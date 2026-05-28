@@ -17,7 +17,21 @@ TOKENS check_Keyword(const char* word) {
    if (strcmp(word,"for") == 0) return TOKEN_FOR; 
    if (strcmp(word,"elef") == 0) return TOKEN_ELEF;
    if (strcmp(word,"promise->") == 0) return TOKEN_PROMISE; 
+   if (strcmp(word,"else") == 0) return TOKEN_ELSE; 
+   if (strcmp(word,"request")==0) return TOKEN_REQUEST;
+   return TOKEN_IDENTIFIER; 
+}LexerState;
 
-   return TOKEN_EOF; 
+Token getNextToken(LexerState* state) { 
+    while (state->source[state->cursor] != '\0') { 
+        char current = state->source[state->cursor]; 
 
+        if (current == ' ' || current == '\t'){
+          state->cursor++; 
+          continue;
+        }
+    }
+Token EOF = {TOKEN_EOF,"EOF"};  
+return EOF;
 }
+
