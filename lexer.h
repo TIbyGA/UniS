@@ -36,7 +36,11 @@ typedef enum {
      TOKEN_LBRACE, // { 
      TOKEN_RBRACE, // } 
      TOKEN_LPANTH, // ) 
-     TOKEN_RPANTH, // ( 
+     TOKEN_RPANTH, // (
+     TOKEN_LDOUBTEQ // "
+     TOKEN_RDOUBTEQ // " 
+     TOKEN_LQUOTE // ' 
+     TOKEN_RQUOTE 
 }TOKENS;
 
 typedef struct { 
