@@ -56,6 +56,11 @@ Token getNextToken(LexerState* state) {
             Token t = {TOKEN_IF,"if"}; 
             return t; 
         }
+        if (strncmp(&state->source[state->cursor],"elef",4) == 0) { 
+            state->cursor += 4; 
+            Token t = {TOKEN_ELEF,"elef"};
+            return t;
+        }
         if (current == '=') { state->cursor++; Token t = {TOKEN_ASSIGN, "="}; return t; }
         if (current == '+') { state->cursor++; Token t = {TOKEN_PLUS, "+"}; return t; }
         if (current == '-') { state->cursor++; Token t = {TOKEN_MINUS, "-"}; return t; }
