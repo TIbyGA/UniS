@@ -6,7 +6,7 @@ typedef struct {
    const char* source; 
    int cursor; 
    int line;
-}LexerState; 
+} LexerState; 
 
 TOKENS check_Keyword(const char* word) { 
    if (strcmp(word,"while") == 0) return TOKEN_WHILE; 
@@ -20,7 +20,7 @@ TOKENS check_Keyword(const char* word) {
    if (strcmp(word,"else") == 0) return TOKEN_ELSE; 
    if (strcmp(word,"request")==0) return TOKEN_REQUEST;
    return TOKEN_IDENTIFIER; 
-}LexerState;
+}
 
 Token getNextToken(LexerState* state) { 
     while (state->source[state->cursor] != '\0') { 
@@ -48,7 +48,7 @@ Token getNextToken(LexerState* state) {
         }
         if (strncmp(&state->source[state->cursor],"say",3) == 0) { 
             state->cursor += 3;
-            Token t = {TOKEN_VAR, "say"};
+            Token t = {TOKEN_SAY, "say"};
             return t;
         }
         if (strncmp(&state->source[state->cursor],"if",2) == 0) { 
@@ -61,7 +61,7 @@ Token getNextToken(LexerState* state) {
             Token t = {TOKEN_ELEF,"elef"};
             return t;
         }
-                if (strncmp(&state->source[state->cursor], "scanS", 5) == 0) {
+        if (strncmp(&state->source[state->cursor], "scanS", 5) == 0) {
             state->cursor += 5;
             Token t = {TOKEN_SCANS, "scanS"};
             return t;
@@ -91,6 +91,7 @@ Token getNextToken(LexerState* state) {
             Token t = {TOKEN_RETURN, "return"};
             return t;
         }
+        
         if (current == '=') { state->cursor++; Token t = {TOKEN_ASSIGN, "="}; return t; }
         if (current == '+') { state->cursor++; Token t = {TOKEN_PLUS, "+"}; return t; }
         if (current == '-') { state->cursor++; Token t = {TOKEN_MINUS, "-"}; return t; }
@@ -105,7 +106,7 @@ Token getNextToken(LexerState* state) {
         if (current == '(') { state->cursor++; Token t = {TOKEN_LPANTH, "("}; return t; }
         if (current == ')') { state->cursor++; Token t = {TOKEN_RPANTH, ")"}; return t; } 
     }
-Token EOF = {TOKEN_EOF,"EOF"};  
-return EOF;
+    Token eof_token = {TOKEN_EOF,"EOF"};  
+    return eof_token;
 }
 
