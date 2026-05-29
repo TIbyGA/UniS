@@ -105,8 +105,8 @@ Token getNextToken(LexerState* state) {
         if (current == '}') { state->cursor++; Token t = {TOKEN_RBRACE, "}"}; return t; }
         if (current == '(') { state->cursor++; Token t = {TOKEN_LPANTH, "("}; return t; }
         if (current == ')') { state->cursor++; Token t = {TOKEN_RPANTH, ")"}; return t; }
-        if (current == \''\') { state->cursor++; Token t = {TOKEN_QUOTE, "'"}; return t;} 
-        if (current == '"') { state->cursor++; Token t = {TOKEN_DOUBTE, \""\"}; return t;}
+        if (current == '\'') { state->cursor++; Token t = {TOKEN_QUOTE, "'"}; return t;} 
+        if (current == '"') { state->cursor++; Token t = {TOKEN_DOUBTE, "\""}; return t;}
                              
     }
     Token eof_token = {TOKEN_EOF,"EOF"};  
