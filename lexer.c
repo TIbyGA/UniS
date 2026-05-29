@@ -35,6 +35,27 @@ Token getNextToken(LexerState* state) {
           state->cursor++;
           continue; 
         }
+        
+        if (strncmp(&state->source[state->cursor], "while", 5) == 0) {
+            state->cursor += 5;
+            Token t = {TOKEN_WHILE, "while"};
+            return t;
+        }
+        if (strncmp(&state->source[state->cursor], "var",3) == 0) { 
+            state->cursor += 3; 
+            Token t = {TOKEN_VAR,"var"};
+            return t; 
+        }
+        if (strncmp(&state->source[state->cursor],"say",3) == 0) { 
+            state->cursor += 3;
+            Token t = {TOKEN_VAR, "say"};
+            return t;
+        }
+        if (strncmp(&state->source[state->cursor],"if",2) == 0) { 
+            state->cursor += 2; 
+            Token t = {TOKEN_IF,"if"}; 
+            return t; 
+        }
         if (current == '=') { state->cursor++; Token t = {TOKEN_ASSIGN, "="}; return t; }
         if (current == '+') { state->cursor++; Token t = {TOKEN_PLUS, "+"}; return t; }
         if (current == '-') { state->cursor++; Token t = {TOKEN_MINUS, "-"}; return t; }
@@ -48,6 +69,11 @@ Token getNextToken(LexerState* state) {
         if (current == '}') { state->cursor++; Token t = {TOKEN_RBRACE, "}"}; return t; }
         if (current == '(') { state->cursor++; Token t = {TOKEN_LPANTH, "("}; return t; }
         if (current == ')') { state->cursor++; Token t = {TOKEN_RPANTH, ")"}; return t; }
+         
+        if (current == "while") { 
+            for (int i = 0; i < 6; i++) { state->cursor++;}
+            check_Keyword("while");
+        }
     }
 Token EOF = {TOKEN_EOF,"EOF"};  
 return EOF;
