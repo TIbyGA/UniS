@@ -30,6 +30,24 @@ Token getNextToken(LexerState* state) {
           state->cursor++; 
           continue;
         }
+        if (current == '\n') { 
+          state->line++; 
+          state->cursor++;
+          continue; 
+        }
+        if (current == '=') { state->cursor++; Token t = {TOKEN_ASSIGN, "="}; return t; }
+        if (current == '+') { state->cursor++; Token t = {TOKEN_PLUS, "+"}; return t; }
+        if (current == '-') { state->cursor++; Token t = {TOKEN_MINUS, "-"}; return t; }
+        if (current == '/') { state->cursor++; Token t = {TOKEN_DIV, "/"}; return t; }
+        if (current == '*') { state->cursor++; Token t = {TOKEN_MULT, "*"}; return t; }
+        if (current == '%') { state->cursor++; Token t = {TOKEN_MODU, "%"}; return t; }
+        
+        if (current == '[') { state->cursor++; Token t = {TOKEN_LBRA, "["}; return t; }
+        if (current == ']') { state->cursor++; Token t = {TOKEN_RBRA, "]"}; return t; }
+        if (current == '{') { state->cursor++; Token t = {TOKEN_LBRACE, "{"}; return t; }
+        if (current == '}') { state->cursor++; Token t = {TOKEN_RBRACE, "}"}; return t; }
+        if (current == '(') { state->cursor++; Token t = {TOKEN_LPANTH, "("}; return t; }
+        if (current == ')') { state->cursor++; Token t = {TOKEN_RPANTH, ")"}; return t; }
     }
 Token EOF = {TOKEN_EOF,"EOF"};  
 return EOF;
