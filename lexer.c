@@ -61,6 +61,36 @@ Token getNextToken(LexerState* state) {
             Token t = {TOKEN_ELEF,"elef"};
             return t;
         }
+                if (strncmp(&state->source[state->cursor], "scanS", 5) == 0) {
+            state->cursor += 5;
+            Token t = {TOKEN_SCANS, "scanS"};
+            return t;
+        }
+        if (strncmp(&state->source[state->cursor], "for", 3) == 0) {
+            state->cursor += 3;
+            Token t = {TOKEN_FOR, "for"};
+            return t;
+        }
+        if (strncmp(&state->source[state->cursor], "promise->", 9) == 0) {
+            state->cursor += 9;
+            Token t = {TOKEN_PROMISE, "promise->"};
+            return t;
+        }
+        if (strncmp(&state->source[state->cursor], "else", 4) == 0) {
+            state->cursor += 4;
+            Token t = {TOKEN_ELSE, "else"};
+            return t;
+        }
+        if (strncmp(&state->source[state->cursor], "request", 7) == 0) {
+            state->cursor += 7;
+            Token t = {TOKEN_REQUEST, "request"};
+            return t;
+        }
+        if (strncmp(&state->source[state->cursor], "return", 6) == 0) {
+            state->cursor += 6;
+            Token t = {TOKEN_RETURN, "return"};
+            return t;
+        }
         if (current == '=') { state->cursor++; Token t = {TOKEN_ASSIGN, "="}; return t; }
         if (current == '+') { state->cursor++; Token t = {TOKEN_PLUS, "+"}; return t; }
         if (current == '-') { state->cursor++; Token t = {TOKEN_MINUS, "-"}; return t; }
@@ -73,12 +103,7 @@ Token getNextToken(LexerState* state) {
         if (current == '{') { state->cursor++; Token t = {TOKEN_LBRACE, "{"}; return t; }
         if (current == '}') { state->cursor++; Token t = {TOKEN_RBRACE, "}"}; return t; }
         if (current == '(') { state->cursor++; Token t = {TOKEN_LPANTH, "("}; return t; }
-        if (current == ')') { state->cursor++; Token t = {TOKEN_RPANTH, ")"}; return t; }
-         
-        if (current == "while") { 
-            for (int i = 0; i < 6; i++) { state->cursor++;}
-            check_Keyword("while");
-        }
+        if (current == ')') { state->cursor++; Token t = {TOKEN_RPANTH, ")"}; return t; } 
     }
 Token EOF = {TOKEN_EOF,"EOF"};  
 return EOF;
